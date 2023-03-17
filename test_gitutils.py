@@ -14,8 +14,6 @@ class TestPeekableIterator(TestCase):
             self.assertEqual(c, input_[idx])
 
     def test_is_iterable(self) -> None:
-        from collections.abc import Iterator
-        iter_ = PeekableIterator("")
         self.assertTrue(isinstance(iter_, Iterator))
 
     def test_peek(self, input_: str = "abcdef") -> None:
@@ -54,7 +52,6 @@ class TestGitRepo(TestCase):
         except RuntimeError as e:
             raise SkipTest(f"Can't find head ref {ref} due to {str(e)}") from e
 
-    def test_compute_diff(self) -> None:
         diff = self.repo.diff("HEAD")
         sha = _shasum(diff)
         self.assertEqual(len(sha), 64)
